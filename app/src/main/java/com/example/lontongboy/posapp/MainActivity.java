@@ -19,36 +19,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
+        setContentView(R.layout.home_layout);
 
-        scanBtn = (Button) findViewById(R.id.scan_button);
-        formatTxt = (TextView) findViewById(R.id.scan_format);
-        contentTxt = (TextView) findViewById(R.id.scan_content);
 
-        scanBtn.setOnClickListener(this);
+
     }
+
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.scan_button){
-            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-            scanIntegrator.initiateScan();
-        }
-    }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (scanningResult != null){
-            String scanContent = scanningResult.getContents();
-            String scanFormat = scanningResult.getFormatName();
-
-            formatTxt.setText("FORMAT : " + scanFormat);
-            contentTxt.setText("CONTENT : " + scanContent);
-        }
-        else{
-            Toast toast = Toast.makeText(getApplicationContext(), "No scan data", Toast.LENGTH_LONG);
-            toast.show();
-        }
     }
 }
