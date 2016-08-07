@@ -31,34 +31,3 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 }
-// cek barang
-class CekBarang{
-    public void openFlashCam(){
-        System.out.print("open flash cam");
-    }
-
-    public void scanBarcode(){
-        System.out.print("scan barcode");
-    }
-}
-
-// isi pesanan
-class IsiPesanan{
-
-    public void isiNama(){
-        System.out.print("Isi Nama");
-    }
-
-    public void scanBarang(){
-        System.out.print("scan Barang");
-
-    }
-
-    public void listViewUpdater(){
-        System.out.print("update list view");
-    }
-
-    public void checkoutStatus(){
-        System.out.print("True | False");
-    }
-}
