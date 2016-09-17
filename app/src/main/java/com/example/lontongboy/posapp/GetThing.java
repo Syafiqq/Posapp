@@ -12,8 +12,7 @@ public class GetThing {
 //    scan barcode
 //    turn on flash cam
 //    check database
-//    update list item
-
+//    update list itemjkkj
     public String scanBarang(){
 
         String kodeBarang = null;
