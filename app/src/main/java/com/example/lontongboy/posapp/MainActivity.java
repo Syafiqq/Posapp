@@ -34,14 +34,36 @@ import com.google.zxing.integration.android.IntentResult;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private Button scanButton;
-    public String scanResult;
+    public Button cekBarang;
+    public Button isiPesanan;
+    public Button keluar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
 
+        // inisialisasi button dengan ui
+        cekBarang = (Button) findViewById(R.id.btn_cekbrang);
+        isiPesanan = (Button) findViewById(R.id.btn_pesan);
+        keluar = (Button) findViewById(R.id.btn_exit);
+
+        // setiap button di pencet maka akan ke fitur
+        cekBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CheckBarang.class);
+                startActivity(intent);
+            }
+        });
+
+        isiPesanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, IsiPesanan.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

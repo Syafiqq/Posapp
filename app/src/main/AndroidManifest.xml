@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CheckBarang"></activity>
+        <activity android:name=".IsiPesanan"></activity>
     </application>
 
 </manifest>
