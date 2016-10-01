@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+// TODO: 10/1/16 query barang di tampilkan d list view, udah gitu aja 
+
 public class CheckBarang extends AppCompatActivity {
 
     private Button cekBarang;
@@ -51,6 +53,7 @@ public class CheckBarang extends AppCompatActivity {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 hasilScan = result.getContents();
                 System.out.println(hasilScan);
+
             }
         } else{
             super.onActivityResult(requestCode, resultCode, data);

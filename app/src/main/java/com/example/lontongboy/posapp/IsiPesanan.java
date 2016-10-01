@@ -16,6 +16,12 @@ import com.google.zxing.integration.android.IntentResult;
 /**
  * Created by hippo on 9/18/16.
  */
+ 
+// TODO: 10/1/16 hasil scan tambah ke list view
+// TODO: 10/1/16 list view ke array untuk di query
+// TODO: 10/1/16 tombol submit belum berfungsi 
+// TODO: 10/1/16 submit barang = query ke database tambah barang pesanan 
+
 public class IsiPesanan extends AppCompatActivity{
 
     private Button cekBarang;
@@ -55,6 +61,7 @@ public class IsiPesanan extends AppCompatActivity{
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 hasilScan = result.getContents();
                 System.out.println(hasilScan);
+                
             }
         } else{
             super.onActivityResult(requestCode, resultCode, data);
