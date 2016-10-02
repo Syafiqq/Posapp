@@ -15,42 +15,7 @@ import java.util.Date;
 
 public class MySQLAccess {
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    // TODO: 10/1/16 Ganti DB_URL dengan alamat server sql nya tiap lepi beda
-    static final String DB_URL = "jdbc:mysql://localhost/posapp";
 
-    // TODO: 10/1/16 username dan password disesuaikan dengan DBnya
-    static final String USER = "root";
-    static final String PASS = "admin";
-
-    public Connection conn = null;
-    public Statement stmt = null;
-
-    public void initDBConnection(){
-        try {
-            // Register JDBC driver
-            Class.forName("com.mysql.jdbc.Driver");
-            // open a connection
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    public void createStatemen(String sql){
-        try {
-            stmt = conn.createStatement();
-            // execute query
-            stmt.executeQuery(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
     /*
     public void readDatabase() throws Exception{
         try {

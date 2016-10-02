@@ -19,6 +19,7 @@ public class CheckBarang extends AppCompatActivity {
     private Button cekBarang;
     public String hasilScan;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

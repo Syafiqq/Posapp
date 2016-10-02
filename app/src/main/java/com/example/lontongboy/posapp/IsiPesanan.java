@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by hippo on 9/18/16.
  */
@@ -50,6 +53,15 @@ public class IsiPesanan extends AppCompatActivity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        DBInter inter = new DBInter();
+        inter.initDBConnection();
+        try {
+            inter.stmt = inter.conn.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null){
             if (result.getContents() == null){
@@ -60,6 +72,20 @@ public class IsiPesanan extends AppCompatActivity{
                 Log.d("MainActivity", "Scanned");
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 hasilScan = result.getContents();
+
+                // dicocokan
+                String sql = "SELECT id_barcode FROM tb_barang";
+                try {
+                    ResultSet rs = inter.stmt.executeQuery(sql);
+                    while (rs.next()){
+                        String id = rs.getString("id_barcode");
+                        if(id.equals(hasilScan))
+                            Log.d("Sama", "asd");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
                 System.out.println(hasilScan);
                 
             }
