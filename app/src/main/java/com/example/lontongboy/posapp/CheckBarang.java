@@ -74,7 +74,7 @@ public class CheckBarang extends AppCompatActivity {
                 System.out.println(hasilScan);
 
                 // dicocokkan
-                String sql = "SELECT id_barcode FROM tb_barang";
+                String sql = "SELECT id_barcode FROM tb_barang WHERE id_barcode=" + hasilScan;
                 try {
                     ResultSet rs = inter.stmt.executeQuery(sql);
                     while (rs.next()){
