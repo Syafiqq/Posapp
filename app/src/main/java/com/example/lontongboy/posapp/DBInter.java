@@ -13,11 +13,11 @@ class DBInter {
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     // TODO: 10/1/16 Ganti DB_URL dengan alamat server sql nya tiap lepi beda
-    private static final String DB_URL = "jdbc:mysql://localhost/posapp";
+    private static final String DB_URL = "jdbc:mysql://192.168.0.105/posapp";
 
     // TODO: 10/1/16 username dan password disesuaikan dengan DBnya
     private static final String USER = "root";
-    private static final String PASS = "admin";
+    private static final String PASS = "";
 
     public Connection conn = null;
     public Statement stmt = null;

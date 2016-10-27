@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -19,12 +20,19 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 // TODO: 10/1/16 query barang di tampilkan d list view, udah gitu aja 
 
 public class CheckBarang extends AppCompatActivity {
 
     public String hasilScan;
+    TextView namaBarang = (TextView) findViewById(R.id.namaBarang);
+    TextView letaBarang = (TextView) findViewById(R.id.letakBarang);
+    TextView spesifikasiBarang = (TextView) findViewById(R.id.spesifikasiBarang);
+    TextView hargaBarang = (TextView) findViewById(R.id.hargaBarang);
+    TextView stokBarang = (TextView) findViewById(R.id.stokBarang);
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -79,14 +87,18 @@ public class CheckBarang extends AppCompatActivity {
                     ResultSet rs = inter.stmt.executeQuery(sql);
                     while (rs.next()){
                         String id  = rs.getString("id_barcode");
-                        if(id.equals(hasilScan))
-                            Log.d("PODO", "asdasd");
+                        if(id.equals(hasilScan)){
+                            namaBarang.setText(rs.getString("nama_barang"));
+                            letaBarang.setText(rs.getString("letak_barang"));
+                            spesifikasiBarang.setText(rs.getString("spesifikasi"));
+                            hargaBarang.setText(rs.getString("harga"));
+                            stokBarang.setText(rs.getString("stok"));
+                        }
                     }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

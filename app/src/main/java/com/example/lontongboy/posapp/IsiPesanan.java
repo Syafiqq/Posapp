@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -29,6 +30,7 @@ public class IsiPesanan extends AppCompatActivity{
 
     private Button cekBarang;
     private String hasilScan;
+    private EditText namaPem;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,11 @@ public class IsiPesanan extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        namaPem = (EditText) findViewById(R.id.editText);
+        assert namaPem != null;
+        String namaPemesan = namaPem.getText().toString();
+        String[] jumlahPesanan;
+
         DBInter inter = new DBInter();
         inter.initDBConnection();
         try {
@@ -74,6 +81,10 @@ public class IsiPesanan extends AppCompatActivity{
                 hasilScan = result.getContents();
 
                 // dicocokan
+                // add data by barcode id
+                // add them to an string array
+                // display the string array to list adapter.
+                // after button submit pressed, run the sql query to server
                 String sql = "SELECT id_barcode FROM tb_barang";
                 try {
                     ResultSet rs = inter.stmt.executeQuery(sql);
@@ -92,5 +103,9 @@ public class IsiPesanan extends AppCompatActivity{
         } else{
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    public String checkOut(String CustName, String[] barang){
+        return "Sel";
     }
 }
