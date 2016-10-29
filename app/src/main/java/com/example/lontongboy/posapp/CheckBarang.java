@@ -3,6 +3,7 @@ package com.example.lontongboy.posapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,11 +29,6 @@ import java.util.Map;
 public class CheckBarang extends AppCompatActivity {
 
     public String hasilScan;
-    TextView namaBarang = (TextView) findViewById(R.id.namaBarang);
-    TextView letaBarang = (TextView) findViewById(R.id.letakBarang);
-    TextView spesifikasiBarang = (TextView) findViewById(R.id.spesifikasiBarang);
-    TextView hargaBarang = (TextView) findViewById(R.id.hargaBarang);
-    TextView stokBarang = (TextView) findViewById(R.id.stokBarang);
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -43,6 +39,8 @@ public class CheckBarang extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MultiDex.install(this);
+
         setContentView(R.layout.activity_check_barang);
         Button cekBarang = (Button) this.findViewById(R.id.btn_check);
         final Activity activity = this;
@@ -66,6 +64,11 @@ public class CheckBarang extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        TextView namaBarang = (TextView) findViewById(R.id.namaBarang);
+        TextView letaBarang = (TextView) findViewById(R.id.letakBarang);
+        TextView spesifikasiBarang = (TextView) findViewById(R.id.spesifikasiBarang);
+        TextView hargaBarang = (TextView) findViewById(R.id.hargaBarang);
+        TextView stokBarang = (TextView) findViewById(R.id.stokBarang);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         DBInter inter = new DBInter();
         inter.initDBConnection();
@@ -82,18 +85,23 @@ public class CheckBarang extends AppCompatActivity {
                 System.out.println(hasilScan);
 
                 // dicocokkan
-                String sql = "SELECT id_barcode FROM tb_barang WHERE id_barcode=" + hasilScan;
+                String sql = "SELECT id_barcode FROM tb_barang";
                 try {
                     ResultSet rs = inter.stmt.executeQuery(sql);
+                    System.out.println(rs);
                     while (rs.next()){
                         String id  = rs.getString("id_barcode");
-                        if(id.equals(hasilScan)){
-                            namaBarang.setText(rs.getString("nama_barang"));
-                            letaBarang.setText(rs.getString("letak_barang"));
-                            spesifikasiBarang.setText(rs.getString("spesifikasi"));
-                            hargaBarang.setText(rs.getString("harga"));
-                            stokBarang.setText(rs.getString("stok"));
-                        }
+                        Log.i("Akses", id);
+//                        if(id.equals(hasilScan)){
+//                            namaBarang.setText("asdasd");
+//                            letaBarang.setText(rs.getString("letak_barang"));
+//                            spesifikasiBarang.setText(rs.getString("spesifikasi"));
+//                            hargaBarang.setText(rs.getString("harga"));
+//                            stokBarang.setText(rs.getString("stok"));
+//                        }
+//                        else{
+//                            Toast.makeText(this, "Barcode not found", Toast.LENGTH_SHORT).show();
+//                        }
                     }
 
                 } catch (SQLException e) {
