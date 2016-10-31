@@ -18,36 +18,29 @@ package com.example.lontongboy.posapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
  * reads barcodes.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     public Button cekBarang;
     public Button isiPesanan;
     public Button keluar;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         MultiDex.install(this);
         setContentView(R.layout.home_layout);
-        DBInter inter = new DBInter();
+/*        DBInter inter = new DBInter();
         inter.initDBConnection();
 
         try {
@@ -64,36 +57,41 @@ public class MainActivity extends AppCompatActivity {
 //            }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        // inisialisasi button dengan ui
-//        cekBarang = (Button) findViewById(R.id.btn_cekbrang);
-//        isiPesanan = (Button) findViewById(R.id.btn_pesan);
-//        keluar = (Button) findViewById(R.id.btn_exit);
-//
-//        // setiap button di pencet maka akan ke fitur
-//        cekBarang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, CheckBarang.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        isiPesanan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, IsiPesanan.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        // tombol keluar aplikasi
-//        keluar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+        }*/
+        //inisialisasi button dengan ui
+        cekBarang = (Button) findViewById(R.id.btn_cekbrang);
+        isiPesanan = (Button) findViewById(R.id.btn_pesan);
+        keluar = (Button) findViewById(R.id.btn_exit);
+
+        //setiap button di pencet maka akan ke fitur
+        cekBarang.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, CheckBarang.class);
+                startActivity(intent);
+            }
+        });
+
+        isiPesanan.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, IsiPesanan.class);
+                startActivity(intent);
+            }
+        });
+        //tombol keluar aplikasi
+        keluar.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+            }
+        });
     }
 
 
